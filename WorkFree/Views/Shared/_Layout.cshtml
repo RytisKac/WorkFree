@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/shared.css" />
+    <link rel="stylesheet" href="~/css/landing.css" />
+    @RenderSection("authenticationForms", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navBar">
+            <div class="nav-list-left">
+                <h1>WorkFree</h1>
+                <form>
+                    <input type="search" class="searchBar" Placeholder="Search..." />
+                    <button>Search</button>
+                </form>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Pagrindinis</a></li>
+                <li class="nav-list-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Prisijungti</a></li>
+                <li class="nav-list-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registracija</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - WorkFree - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

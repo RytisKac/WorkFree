@@ -1,0 +1,87 @@
+﻿.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.formBox {
+    border: 1px solid silver;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 0 1em #222;
+}
+
+    .formBox h1 {
+        text-align: center;
+        border-bottom: solid 1px #e5e5e5;
+        padding-bottom: 5px;
+        ;
+        margin-bottom: 20px;
+    }
+
+    .formBox input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        outline: none;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    .formBox input {
+        background: #fff;
+        border: 1px solid #dbdbdb;
+        font-size: 1.6em;
+        padding: .5em .5em;
+        border-radius: 2px;
+    }
+
+.loginButtonDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.formBox button {
+    background: #004777;
+    box-shadow: 0 3px 0 0 darken( #004777, 10%);
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 1.5em 0 0;
+    outline: none;
+    padding: .5em 0;
+    text-shadow: 0 1px #68B25B;
+    width: 80%;
+}
+
+    .formBox button:hover {
+        background: #004766;
+        text-shadow: 0 1px 3px darken(#004777, 30%);
+    }
+
+.registerForm input[type="submit"] {
+    background: #004777;
+    box-shadow: 0 3px 0 0 darken( #004777, 10%);
+    border-radius: 2px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 2em 0 0;
+    outline: none;
+    padding: .5em 0;
+    text-shadow: 0 1px #68B25B;
+}
+
+    .registerForm input[type="submit"]:hover {
+        background: #004777;
+        text-shadow: 0 1px 3px darken(#004777, 30%);
+    }
