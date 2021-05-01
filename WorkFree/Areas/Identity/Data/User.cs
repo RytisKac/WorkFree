@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using WorkFree.Models;
 
 namespace WorkFree.Areas.Identity.Data
 {
@@ -18,5 +19,7 @@ namespace WorkFree.Areas.Identity.Data
 
         [Column(TypeName = "nvarchar(500)")]
         public string ProfileDescription { get; set; }
+
+        public ICollection<Listing> Listings { get; set; }
     }
 }

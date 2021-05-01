@@ -1,6 +1,12 @@
-﻿@{
+﻿@model IEnumerable<ListingCategory>
+
+@{
     ViewData["Title"] = "Privacy Policy";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+@foreach(ListingCategory category in Model)
+{
+    <h1>@category.Name</h1>
+}

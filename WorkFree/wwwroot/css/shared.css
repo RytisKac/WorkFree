@@ -68,6 +68,11 @@ nav button {
         background-color: #FFFFFF;
     }
 
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
 #footer {
     text-align: center;
     border-top: 1px solid silver;

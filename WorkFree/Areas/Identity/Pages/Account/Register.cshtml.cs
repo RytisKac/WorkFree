@@ -47,6 +47,10 @@ namespace WorkFree.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }

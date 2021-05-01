@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkFree.Data;
 using WorkFree.Models;
 
 namespace WorkFree.Controllers
@@ -12,10 +13,11 @@ namespace WorkFree.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly WorkFreeContext _context;
+        public HomeController(ILogger<HomeController> logger, WorkFreeContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -25,7 +27,8 @@ namespace WorkFree.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            IEnumerable<ListingCategory> list = _context.ListingCategory;
+            return View(list);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

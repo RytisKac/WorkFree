@@ -1,0 +1,51 @@
+﻿@model WorkFree.Models.Listing
+@{
+}
+
+<div class="row">
+    <div class="col-75">
+        <div class="container">
+            <form asp-action="Create">
+
+                <div class="row">
+                    <div class="col-50">
+                        <h1 class="header">Naujas skelbimas</h1>
+                        <label asp-for="Name">Pavadinimas</label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input type="text" asp-for="Name">
+
+                        <label asp-for="Description">Aprašymas</label>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <input type="text" asp-for="Description">
+
+                        <label asp-for="Price">Kaina</label>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                        <input type="number" asp-for="Price">
+
+                        <label asp-for="PricingType">Pasirinkite kainos tipą</label>
+                        @foreach (var type in Model.PricingTypes)
+                        {
+                            <input type="radio" value="@type.Id" asp-for="PricingType" /><p>@type.Name</p><br />
+                        }
+
+                        <label asp-for="ListingCategory">Pasirinkite skelbimo kategoriją</label>
+                        @foreach (var category in Model.ListingCategories)
+                        {
+                            <input type="radio" value="@category.Id" asp-for="ListingCategory" /><p>@category.Name</p><br />
+                        }
+
+                        <label asp-for="City">Pasirinkite miestą</label>
+                        @foreach (var city in Model.Cities)
+                        {
+                            <input type="radio" value="@city.Id" asp-for="City" /><p>@city.Name</p><br />
+                        }
+
+                    </div>
+                </div>
+                <input type="submit" value="Sukurti" id="padas" class="btn">
+            </form>
+        </div>
+    </div>
+
+
+</div>
