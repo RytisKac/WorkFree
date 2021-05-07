@@ -1,5 +1,29 @@
-﻿@*
+﻿@model IEnumerable<WorkFree.Models.Listing>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+}
+@section listingsStyle{
+    <link rel="stylesheet" href="~/css/listings.css" />
+    }
+
+@foreach (var listing in Model)
+{
+<div class="card">
+    <img src="https://turanizmir.com/en/wp-content/uploads/2021/03/https___specials-images.forbesimg.com_imageserve_1171642478_0x0.jpg"
+         alt="Avatar" style="width:100%">
+    <div class="card-container">
+        <div class="card-info">
+            <p class="card-info-title">@listing.Name</p>
+            <p class="card-info-price">@listing.Price €/h</p>
+            <p class="card-info-location">Kaunas, Lietuva</p>
+        </div>
+        <div class="card-user">
+            <img src="https://qph.fs.quoracdn.net/main-qimg-20df28f3b31895e56cba6dbc0515c635"
+                 class="card-user-photo" />
+            <p class="card-user-name">Rytis Kačinskis</p>
+        </div>
+    </div>
+</div>
 }

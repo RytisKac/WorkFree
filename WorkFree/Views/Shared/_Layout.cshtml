@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="~/css/shared.css" />
     <link rel="stylesheet" href="~/css/landing.css" />
     @RenderSection("authenticationForms", required: false)
+    @RenderSection("listingsStyle", required: false)
 </head>
 <body>
     <header>
         <nav class="navBar">
             <div class="nav-list-left">
                 <h1>WorkFree</h1>
-                <form>
-                    <input type="search" class="searchBar" Placeholder="Search..." />
-                    <button>Search</button>
+                <form asp-controller="Listings" asp-action="Index" method="get">
+                    <input type="text" name="SearchString" class="searchBar" Placeholder="Search..." value="@ViewData["CurrentFilter"]" />
+                    <button type="submit">Search</button>
                 </form>
             </div>
             <ul class="nav-list">

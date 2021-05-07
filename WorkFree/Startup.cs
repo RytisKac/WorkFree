@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using WorkFree.Data;
 
@@ -29,6 +30,8 @@ namespace WorkFree
             options.UseMySQL(Configuration.GetConnectionString("WorkFreeContextConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +49,18 @@ namespace WorkFree
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //If not logged in user wants to access page which required authentication, redirect him to login page
+            app.UseStatusCodePages(async context =>
+            {
+                var request = context.HttpContext.Request;
+                var response = context.HttpContext.Response;
+
+                if(response.StatusCode == (int)HttpStatusCode.Unauthorized)
+                {
+                    response.Redirect("/Identity/Account/Login");
+                }
+            });
 
             app.UseRouting();
 
