@@ -28,17 +28,17 @@ namespace WorkFree.Models
         [Required]
         [ForeignKey("PricingType")]
         public int PricingTypeId { get; set; }
-        public PricingType PricingType { get; set; }
+        public virtual PricingType PricingType { get; set; }
 
         [Required]
         [ForeignKey("ListingCategory")]
         public int ListingCategoryId { get; set; }
-        public ListingCategory ListingCategory { get; set; }
+        public virtual ListingCategory ListingCategory { get; set; }
 
         [Required]
         [ForeignKey("City")]
         public int CityId { get; set; }
-        public City City { get; set; }
+        public virtual City City { get; set; }
 
         [Required]
         [ForeignKey("aspnetusers")]

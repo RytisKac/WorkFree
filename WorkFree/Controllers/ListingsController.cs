@@ -24,8 +24,17 @@ namespace WorkFree.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber)
         {
+            if(searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             ViewData["CurrentFilter"] = searchString;
             var listings = from l in _context.Listings select l;
             if (!String.IsNullOrEmpty(searchString))
@@ -33,7 +42,8 @@ namespace WorkFree.Controllers
                 listings = listings.Where(s => s.Name.Contains(searchString));
             }
 
-            return View(await listings.AsNoTracking().ToListAsync());
+            int pageSize = 10;
+            return View(await PaginatedList<Listing>.CreateAsync(listings.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         [Authorize]
@@ -73,6 +83,23 @@ namespace WorkFree.Controllers
             model.cities = _context.Cities.ToList();
             model.pricingTypes = _context.PricingTypes.ToList();
             return View("Create", model);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var listing = await _context.Listings.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+
+            if(listing == null)
+            {
+                return NotFound();
+            }
+
+            return View(listing);
         }
     }
 }
