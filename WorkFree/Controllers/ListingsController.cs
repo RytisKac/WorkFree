@@ -26,7 +26,7 @@ namespace WorkFree.Controllers
         }
         public async Task<IActionResult> Index(string searchString, string currentFilter, int? pageNumber)
         {
-            if(searchString != null)
+            if (searchString != null)
             {
                 pageNumber = 1;
             }
@@ -36,10 +36,14 @@ namespace WorkFree.Controllers
             }
 
             ViewData["CurrentFilter"] = searchString;
-            var listings = from l in _context.Listings select l;
+            var listings = from s in _context.Listings select s;
+            listings = listings.Include(c => c.City).Include(l => l.PricingType);
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.PricingTypes = _context.PricingTypes.ToList();
+            ViewBag.ListingCategories = _context.ListingCategory.ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                listings = listings.Where(s => s.Name.Contains(searchString));
+                listings = listings.Where(s => s.Name.Contains(searchString)).Include(c => c.City).Include(l => l.PricingType);
             }
 
             int pageSize = 10;
@@ -72,7 +76,7 @@ namespace WorkFree.Controllers
                     PricingTypeId = model.PricingType,
                     ListingCategoryId = model.ListingCategory,
                     CityId = model.City,
-                    UserId = userId
+                    UserId = userId,
                 };
                 _context.Add(newListing);
                 _context.SaveChanges();
@@ -87,19 +91,47 @@ namespace WorkFree.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var listing = await _context.Listings.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
 
-            if(listing == null)
+            if (listing == null)
             {
                 return NotFound();
             }
 
             return View(listing);
+        }
+
+        public async Task<IActionResult> Personal(string searchString, string currentFilter, int? pageNumber)
+        {
+            User user = await _userManager.GetUserAsync(User);
+            string userID = user?.Id;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            var listings = from s in _context.Listings select s;
+            listings = listings.Include(c => c.City).Include(l => l.PricingType).Where(u => u.UserId == userID);
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.PricingTypes = _context.PricingTypes.ToList();
+            ViewBag.ListingCategories = _context.ListingCategory.ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listings = listings.Where(s => s.Name.Contains(searchString)).Include(c => c.City).Include(l => l.PricingType);
+            }
+
+            int pageSize = 10;
+            return View(await PaginatedList<Listing>.CreateAsync(listings.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
     }
 }
