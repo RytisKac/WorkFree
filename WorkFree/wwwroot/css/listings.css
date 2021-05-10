@@ -43,3 +43,16 @@
 .card-user-name {
     margin-left: 5px;
 }
+.filter-bar{
+    width: 100%;
+    text-align:center;
+    background-color: gray;
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid black;
+}
+.filter-container{
+    width: 100%;
+    height: 200px;
+    background-color: gray;
+    display: none;
+}

@@ -29,7 +29,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="ListingCategory">Pasirinkite skelbimo kategoriją</label>
-                <select asp-for="ListingCategory" asp-items="@(new SelectList(Model.listingCategories, "Id", "Name"))"></select>
+                <select asp-for="ListingCategory"
+                    asp-items="@(new SelectList(Model.listingCategories, "Id", "Name"))"></select>
             </div>
             <div class="form-group">
                 <label asp-for="City">Pasirinkite miestą</label>

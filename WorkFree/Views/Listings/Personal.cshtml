@@ -1,11 +1,11 @@
-﻿@model PaginatedList<WorkFree.Models.Listing>
+@model PaginatedList<WorkFree.Models.Listing>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 @section listingsStyle{
-    <link rel="stylesheet" href="~/css/listings.css" />
+<link rel="stylesheet" href="~/css/listings.css" />
 }
 
 <div class="filter-bar">Filtrai</div>
@@ -18,16 +18,16 @@
 {
     <div class="card">
         <img src="https://turanizmir.com/en/wp-content/uploads/2021/03/https___specials-images.forbesimg.com_imageserve_1171642478_0x0.jpg"
-             alt="Avatar" style="width:100%">
+        alt="Avatar" style="width:100%">
         <div class="card-container">
             <div class="card-info">
-                <a asp-action="Details" asp-route-id="@listing.Id" class="card-info-title">@Html.DisplayFor(l => listing.Name)</a>
+                <a asp-action="Details" asp-route-id="@listing.Id" class="card-info-title">@Html.DisplayFor(l =>
+                listing.Name)</a>
                 <p class="card-info-price">@Html.DisplayFor(l => listing.Price) €/h</p>
                 <p class="card-info-location">@Html.DisplayFor(l => listing.City.Name), Lietuva</p>
             </div>
             <div class="card-user">
-                <img src="https://qph.fs.quoracdn.net/main-qimg-20df28f3b31895e56cba6dbc0515c635"
-                     class="card-user-photo" />
+                <img src="https://qph.fs.quoracdn.net/main-qimg-20df28f3b31895e56cba6dbc0515c635" class="card-user-photo" />
                 <p class="card-user-name">Rytis Kačinskis</p>
             </div>
         </div>
@@ -39,21 +39,17 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="@prevDisabled">Previous</a>
-<a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="@nextDisabled">Next</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="@prevDisabled">Previous</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="@nextDisabled">Next</a>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $(".filter-bar").click(function () {
-                $(".filter-container").slideToggle("slow");
-            });
+<script>
+    $(document).ready(function () {
+        $(".filter-bar").click(function () {
+            $(".filter-container").slideToggle("slow");
         });
-    </script>
+    });
+</script>
 }

@@ -31,7 +31,7 @@ namespace WorkFree
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +56,7 @@ namespace WorkFree
                 var request = context.HttpContext.Request;
                 var response = context.HttpContext.Response;
 
-                if(response.StatusCode == (int)HttpStatusCode.Unauthorized)
+                if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
                 {
                     response.Redirect("/Identity/Account/Login");
                 }
