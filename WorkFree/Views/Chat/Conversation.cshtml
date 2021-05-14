@@ -1,1 +1,11 @@
-﻿
+﻿@model WorkFree.Models.Chat
+
+@foreach(var message in Model.Messages)
+            {
+                <h1>@message.Content</h1>
+            }
+
+<form asp-controller="Chat" asp-action="SendMessage" method="post">
+    <input type="text" name="content"/>
+    <button type="submit" name="chatId" value="@Model.Id">Siųsti</button>
+</form>

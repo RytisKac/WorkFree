@@ -13,5 +13,7 @@ namespace WorkFree.Models
 
         public int ChatId { get; set; }
         public Chat Chat { get; set; }
+
+        public string SenderName { get; set; }
     }
 }

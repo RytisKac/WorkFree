@@ -1,3 +1,7 @@
 ﻿@model WorkFree.Areas.Identity.Data.User
 
 <h1>@Model.Email</h1>
+
+<form asp-controller="Chat" asp-action="CreateChat">
+    <button type="submit" name="userId" value="@Model.Id">Susisiekti</button>
+</form>

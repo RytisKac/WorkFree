@@ -2,5 +2,5 @@
 
 @foreach(var chat in Model)
 {
-    <h1>@chat.Name</h1>
+    <a asp-controller="Chat" asp-action="Conversation" asp-route-id="@chat.Id">@chat.Name</a>
 }
