@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkFree.Data;
 
 namespace WorkFree.Migrations
 {
     [DbContext(typeof(WorkFreeContext))]
-    partial class WorkFreeContextModelSnapshot : ModelSnapshot
+    [Migration("20210514154127_Chat")]
+    partial class Chat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,12 +228,10 @@ namespace WorkFree.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(767)");
@@ -240,13 +240,13 @@ namespace WorkFree.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("chats");
+                    b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("WorkFree.Models.ChatUser", b =>
                 {
                     b.Property<int>("ChatId")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(767)");
@@ -352,7 +352,7 @@ namespace WorkFree.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ChatId")
-                        .HasColumnType("int(11)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");

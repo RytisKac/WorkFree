@@ -28,7 +28,7 @@
             <div class="card-user">
                 <img src="https://qph.fs.quoracdn.net/main-qimg-20df28f3b31895e56cba6dbc0515c635"
                      class="card-user-photo" />
-                <p class="card-user-name">Rytis Kačinskis</p>
+                <a class="card-user-name" asp-action="Details" asp-controller="User" asp-route-id="@listing.UserId">@Html.DisplayFor(l => listing.User.Email)</a>
             </div>
         </div>
     </div>

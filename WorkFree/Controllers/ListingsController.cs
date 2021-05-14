@@ -37,10 +37,11 @@ namespace WorkFree.Controllers
 
             ViewData["CurrentFilter"] = searchString;
             var listings = from s in _context.Listings select s;
-            listings = listings.Include(c => c.City).Include(l => l.PricingType);
+            listings = listings.Include(c => c.City).Include(l => l.PricingType).Include(l => l.User);
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.PricingTypes = _context.PricingTypes.ToList();
             ViewBag.ListingCategories = _context.ListingCategory.ToList();
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 listings = listings.Where(s => s.Name.Contains(searchString)).Include(c => c.City).Include(l => l.PricingType);

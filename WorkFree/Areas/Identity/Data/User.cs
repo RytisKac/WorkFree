@@ -21,5 +21,6 @@ namespace WorkFree.Areas.Identity.Data
         public string ProfileDescription { get; set; }
 
         public ICollection<Listing> Listings { get; set; }
+        public ICollection<ChatUser> Chats { get; set; }
     }
 }

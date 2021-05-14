@@ -51,8 +51,7 @@ namespace WorkFree
             app.UseStaticFiles();
 
             //If not logged in user wants to access page which required authentication, redirect him to login page
-            app.UseStatusCodePages(async context =>
-            {
+            app.UseStatusCodePages(context => {
                 var request = context.HttpContext.Request;
                 var response = context.HttpContext.Response;
 
@@ -60,6 +59,8 @@ namespace WorkFree
                 {
                     response.Redirect("/Identity/Account/Login");
                 }
+
+                return Task.CompletedTask;
             });
 
             app.UseRouting();

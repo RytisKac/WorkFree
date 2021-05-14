@@ -41,8 +41,8 @@ namespace WorkFree.Models
         public virtual City City { get; set; }
 
         [Required]
-        [ForeignKey("aspnetusers")]
+        [ForeignKey("User")]
         public string UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

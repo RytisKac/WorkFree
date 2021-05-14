@@ -20,6 +20,9 @@ namespace WorkFree.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<PricingType> PricingTypes { get; set; }
         public DbSet<Listing> Listings { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<ChatUser> ChatUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -74,6 +77,9 @@ namespace WorkFree.Data
                 entity.HasOne<ListingCategory>(s => s.ListingCategory)
                     .WithMany(g => g.Listings)
                     .HasForeignKey(s => s.ListingCategoryId);
+
+                builder.Entity<ChatUser>()
+                .HasKey(x => new { x.ChatId, x.UserId });
             });
 
             builder.Entity<City>(entity =>
@@ -125,6 +131,21 @@ namespace WorkFree.Data
                 entity.HasMany<Listing>(c => c.Listings)
                     .WithOne(l => l.PricingType)
                     .HasForeignKey(l => l.PricingTypeId);
+            });
+
+            builder.Entity<Chat>(entity =>
+            {
+                entity.ToTable("chats");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("Id")
+                    .HasColumnType("int(11)");
+                entity.Property(e => e.Name)
+                    .HasColumnName("Name")
+                    .HasColumnType("varchar(50)");
+                entity.HasMany<ChatUser>(c => c.Users)
+                    .WithOne(l => l.Chat)
+                    .HasForeignKey(l => l.ChatId);
             });
         }
     }
